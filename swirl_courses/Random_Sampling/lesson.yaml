@@ -1,0 +1,71 @@
+- Class: meta
+  Course: statGradResearch
+  Lesson: Random Sampling
+  Author: your name goes here
+  Type: Standard
+  Organization: your organization's name goes here
+  Version: 2.4.4
+
+- Class: text
+  Output: In this lesson, we'll go through the basics of taking random samples 
+  in R.
+
+- Class: cmd_question
+  Output: In the lesson that you took last week on sequences, you learned how to create a simple sequence using the `:` operator. For instance you can create a sequence from 1 to 10 by typing 1:10. Create a sequence from 2 to 35 using this method.
+  CorrectAnswer: 2:35
+  AnswerTests: omnitest(correctExpr='2:35')
+  Hint: Type 2:35 and press Enter
+  
+- Class: text
+  Output: We can use sequences in R to take random samples of numbers. Lets say that you are planning a study to better understand what young adults know about antibiotics. You decide to give survey questions to kids at a number of schools in Washington state. You have identified a total of 725 high schools in Washington, but do not have the resources to give surveys to all of these high schools. You decide to randomly choose a sample of 20 of these high schools at which to conduct the survey. How do you randomly choose the schools?
+  
+- Class: text
+  Output: Lets assume the schools have been labeled from 1 to 725. Now all we need to do is randomly sample 20 of these numbers.  The function sample() in R can be used to take a pseudo-random sample from these 725 schools. 
+  
+- Class: cmd_question
+  Output: Typing sample(1:725,10) would allow you to take a random sample of size 10 from the sequence of 725 schools. The first argument is a vector that you want to draw a random sample from and the second argument is the size of the sample that you want to draw. Try sampling a sequence of 20 schools.
+  CorrectAnswer: sample(1:725,20)
+  AnswerTests: omnitest(correctExpr='sample(1:725, 20)')
+  Hint: Type sample(1:725, 20).
+  
+- Class: cmd_question
+  Output: Each time that you take a random sample it's different. You can verify this by taking another random sample of size 20. Do this now.
+  CorrectAnswer: sample(1:725, 20)
+  AnswerTests: omnitest(correctExpr='sample(1:725, 20)')
+  Hint: Type sample(1:725, 20).
+  
+- Class: text
+  Output: This is exactly what we want. We don't want R to give us the same sample every time. We want it to be different and to appear as if the numbers were random.
+  
+- Class: text
+  Output: Unfortunately no computer algorithm can produce completely random numbers. However, some algorithms have been developed to produce a sequence of numbers that for all typical purposes appear as if they are random. The psuedo-random numbers that come from these sequences are used in the sample() function. Typically, everytime we call the function sample(), the random number generator continues down the sequence. This makes it so that as we keep drawing samples, the samples keep coming up differently. 
+  
+- Class: text
+  Output: Sometime, however, we want to draw the same random sample every time that we run the code. This allows us re-generate the same random sample if we forgot to write it down. It also allows us to reproduce statistics and plots that depend on a random sample we've taken.
+  
+- Class: text
+  Output: You can restart the random number generator to a particular state using the function set.seed(). This function takes a single integer argument that sets the initial state of the random number generator. It really doesn't matter what integer you pass in, as long as you pass the same integer to the function when you want to reset the random number generator state.
+  
+- Class: cmd_question
+  Output: You can give it a try by first typing set.seed(101).
+  CorrectAnswer: set.seed(101)
+  AnswerTests: omnitest(correctExpr='set.seed(101)')
+  Hint: Type set.seed(101).
+  
+- Class: cmd_question
+  Output: Now try taking a random sample of 5 numbers from the sequence ranging from 1 to 10. 
+  CorrectAnswer: omnitest(correctExpr='sample(1:10,5)')
+  AnswerTests: omnitest(correctExpr='sample(1:10,5)')
+  Hint: Type sample(1:10,5). 
+  
+- Class: cmd_question
+  Output: Now set the seed to the same number you did before. 
+  CorrectAnswer: set.seed(101)
+  AnswerTests: omnitest(correctExpr='set.seed(101)')
+  Hint: Type set.seed(101).  
+  
+- Class: cmd_question
+  Output: Finally, try taking a random sample of 5 numbers from 1 to 10 again. 
+  CorrectAnswer: omnitest(correctExpr='sample(1:10,5)')
+  AnswerTests: omnitest(correctExpr='sample(1:10,5)')
+  Hint: Type sample(1:10,5).   
