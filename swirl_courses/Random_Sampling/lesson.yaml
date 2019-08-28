@@ -1,10 +1,133 @@
 - Class: meta
   Course: statGradResearch
   Lesson: Random Sampling
-  Author: Clark Kogan
+  Author: your name goes here
   Type: Standard
-  Organization: Washington State University
+  Organization: your organization's name goes here
   Version: 2.4.4
 
 - Class: text
   Output: In this lesson, we'll go through the basics of taking random samples in R.
+
+- Class: cmd_question
+  Output: In the lesson that you took last week on sequences, you learned how to create a simple sequence using the colon operator. For instance you can create a sequence from 1 to 10 by typing 1:10. Create a sequence from 2 to 35 using this method.
+  CorrectAnswer: 2:35
+  AnswerTests: omnitest(correctExpr='2:35')
+  Hint: Type 2:35 and press Enter
+  
+- Class: text
+  Output: We can use sequences in R to take random samples of numbers. Lets say that you are planning a study to better understand what young adults know about antibiotics. You decide to give survey questions to kids at a number of schools in Washington state. You have identified a total of 725 high schools in Washington, but do not have the resources to give surveys to all of these high schools. You decide to randomly choose a sample of 20 of these high schools at which to conduct the survey.
+  
+- Class: cmd_question
+  Output: Lets assume the schools have been labeled from 1 to 725. Now all we need to do is randomly sample 20 of these numbers.  The function sample() in R can be used to take a pseudo-random sample from these 725 schools. Type ?sample to see help on the sample() function.
+  CorrectAnswer: ?sample
+  AnswerTests: omnitest(correctExpr='?sample')
+  Hint: Type ?sample.  
+  
+- Class: cmd_question
+  Output: Typing sample(1:725, 20) would allow you to take a random sample of size 20 from the sequence of 725 schools. The first argument is a vector that you want to draw a random sample from and the second argument is the size of the sample that you want to draw. Try sampling a sequence of 20 schools.
+  CorrectAnswer: sample(1:725, 20)
+  AnswerTests: omnitest(correctExpr='sample(1:725, 20)')
+  Hint: Type sample(1:725, 20).
+  
+- Class: cmd_question
+  Output: Each time that you type sample(1:725, 20) you will get a different sample. You can verify this by typing sample(1:725, 20) again. Do this now.
+  CorrectAnswer: sample(1:725, 20)
+  AnswerTests: omnitest(correctExpr='sample(1:725, 20)')
+  Hint: Type sample(1:725, 20).
+  
+- Class: text
+  Output: This is exactly what we want. We don't want R to give us the same sample every time. We want it to be different and to appear as if the numbers were random.
+  
+- Class: text
+  Output: Unfortunately no computer algorithm can produce completely random numbers. However, some algorithms have been developed to produce a sequence of numbers that for all typical purposes appear as if they are random. The psuedo-random numbers that come from these sequences are used in the sample() function. Typically, everytime we call this function, the random number generator continues down the sequence. This makes it so that as we keep drawing samples, the samples keep coming up differently. 
+  
+- Class: text
+  Output: Sometimes, we want to draw the same random sample every time that we run our code. We may have forgotten the original random sample we took and want to remember it. More commonly, we may want to generate the same random sample so that we can reproduce statistics and plots that depend on a random sample we've taken. 
+  
+- Class: text
+  Output: This can be accomplished (on a single computer) by resetting the random number generator to a particular state by running code such as set.seed(100). The integer 100 is arbitrary and determines the state to which the the random number generator is set. It really doesn't matter what integer you pass in, so long as you pass the same integer to set.seed() when you want to reproduce the same random selection. For this example, however, we will use the number 100.
+  
+- Class: cmd_question
+  Output: You can give it a try by first typing set.seed(100).
+  CorrectAnswer: set.seed(100)
+  AnswerTests: omnitest(correctExpr='set.seed(100)')
+  Hint: Type set.seed(100).
+  
+- Class: cmd_question
+  Output: Remeber how to take a random sample with the sample() function? Now try taking a sample of 5 random numbers from the sequence ranging from 1 to 10. 
+  CorrectAnswer: omnitest(correctExpr='sample(1:10, 5)')
+  AnswerTests: omnitest(correctExpr='sample(1:10, 5)')
+  Hint: Type sample(1:10, 5). 
+  
+- Class: cmd_question
+  Output: Now set the random seed again using set.seed(100).  
+  CorrectAnswer: set.seed(100)
+  AnswerTests: omnitest(correctExpr='set.seed(100)')
+  Hint: Type set.seed(100).  
+  
+- Class: cmd_question
+  Output: Now for the drum roll. Try taking a random sample of 5 numbers from 1 to 10, again. 
+  CorrectAnswer: omnitest(correctExpr='sample(1:10, 5)')
+  AnswerTests: omnitest(correctExpr='sample(1:10, 5)')
+  Hint: Type sample(1:10, 5).   
+
+- Class: text
+  Output: Check to see if you got the same result for both. The two random samples should match up.
+  
+- Class: text
+  Output: The type of random sampling that we have been doing so far is called random sampling without replacement. If you take a random sample without replacement, you can't take a sample that is larger than the number of elements in the population you are sampling from. Sometimes, however, you want to be able to take a random sample with replacement.
+
+- Class: text
+  Output: Lets say that I want to go on a random road trip. By random road trip I mean that at each intersection, I choose a new random direction to go. I can pre-determine my trip directions using the sample() function in R. 
+  
+- Class: cmd_question
+  Output:  First lets determine the options for which directions I might go. There are three options for which direction I can decide to go at an intersection - left, right or straight. Go ahead and make a new vector called 'directions' that contains the character strings 'left', 'right', and 'straight' in that order. 
+  CorrectAnswer: directions <- c("left", "right", "straight")
+  AnswerTests: omnitest(correctExpr='directions <- c("left", "right", "straight")')
+  Hint: Try creating a new variable called directions, and set it to the value c("left", "right", "straight"). Remember to use <- to set the value.
+
+- Class: text
+  Output: Now we are going to sampling with replacement. This means that we are going to potentially get multiple instances of the same direction. In fact if we sample more than 3 directions, we are guarenteed that we will see one of the directions at least twice. 
+  
+- Class: cmd_question
+  Output: To sample with replacement you will use the 'replace' argument from the sample() function. To take a sample of 40 directions for a random drive, try typing sample(directions, 40, replace = T).  
+  CorrectAnswer: sample(directions, 40, replace = T)
+  AnswerTests: omnitest(correctExpr='sample(directions, 40, replace = T)')
+  Hint: Try typing sample(directions, 40, replace = T).
+
+- Class: text
+  Output: Great, now you have everything to start a random drive this weekend. This will be fun!
+  
+- Class: text
+  Output: Unfortunately, looking over the transcript of your drive, you might see a bunch of lefts or rights in long streaks. It looks like you might be going in circles around the block at times. 
+
+- Class: text
+  Output: It might make for a better drive to fix this. Instead of randomly choosing one of left, right or straight with equal probability, lets just go straight most of the time, but then occasionally make a left or right turn. 
+  
+- Class: text
+  Output: We can do this by changing up the probabilities of each choice using the prob argument. Try looking at the help for the sample() function again by typing ?sample.
+  CorrectAnswer: ?sample
+  AnswerTests: omnitest(correctExpr='?sample')
+  Hint: Try typing ?sample.
+  
+- Class: cmd_question
+  Output: Which argument for the sample function allows you to pass a vector of probabilities which indicates the sampling probabilities of the elements for the vector being sampled?  
+  CorrectAnswer: prob
+  AnswerChoices: x; n; size; replace; prob;
+    a vector of length 0 (i.e. an empty vector)
+  AnswerTests: omnitest(correctVal='prob')
+  Hint: Look at the help for sample in the Arguments section. 
+  
+- Class: cmd_question
+  Output: Lets try sampling left and right turns with probability 0.1 each, and sampling straight with probability 0.8. To do this, first create a vector called p that contains the probabilities 0.1, 0.1, 0.8, in this order.  
+  CorrectAnswer: p <- c(0.1, 0.1, 0.8)
+  AnswerTests: omnitest(correctExpr='p <- c(0.1, 0.1, 0.8)')
+  Hint: Try typing p <- c(0.1, 0.1, 0.8).
+  
+- Class: cmd_question
+  Output: Now trying running sample(directions, 40, prob = p) to get the directions for our trip.  
+  CorrectAnswer: sample(directions, 40, prob = p)
+  AnswerTests: omnitest(correctExpr='sample(directions, 40, prob = p)')
+  Hint: Try typing sample(directions, 40, prob = p).  
+  
