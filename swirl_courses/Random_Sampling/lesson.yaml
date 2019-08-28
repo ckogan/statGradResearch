@@ -1,11 +1,10 @@
 - Class: meta
   Course: statGradResearch
   Lesson: Random Sampling
-  Author: your name goes here
+  Author: Clark Kogan
   Type: Standard
-  Organization: your organization's name goes here
+  Organization: Washington State University
   Version: 2.4.4
 
 - Class: text
   Output: In this lesson, we'll go through the basics of taking random samples in R.
-
